@@ -589,9 +589,7 @@ class SmartHomeDeviceManage(DeviceManage):
         return response
 
     def get_device_status(self, device_id: str) -> dict[str, Any]:
-        response = self.api.get(f"/v1.0/devices/{device_id}")
-        response["result"] = response["result"]["status"]
-        return response
+        return self.api.get(f"/v1.0/devices/{device_id}/status")
 
     def get_device_list_status(self, device_ids: list[str]) -> dict[str, Any]:
         response = self.api.get("/v1.0/devices/", {"device_ids": ",".join(device_ids)})
